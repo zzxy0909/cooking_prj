@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Gui_Worktops : GuiBase
 {
-    public CookingEventRecipeGroup[] m_arrEventRecipeGroup;
+    public RecipeWorktops[] m_arrRecipeWorktops;
 
     public override void SetInspactor_InitTransList()
     {
@@ -15,8 +15,5 @@ public class Gui_Worktops : GuiBase
 
 	}
 	
-    public void SpawnChoppingBoard(int recipeIx, UISprite sor )
-    {
-        m_arrEventRecipeGroup[recipeIx].SpawnChoppingBoard(sor);
-    }
+
 }

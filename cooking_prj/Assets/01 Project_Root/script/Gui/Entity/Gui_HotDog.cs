@@ -4,7 +4,9 @@ using DG.Tweening;
 
 public class Gui_HotDog : GuiBase
 {
-    public E_HotDogSeq m_CurrentState; 
+    public E_HotDogSeq m_CurrentState;
+    const int c_MaxStdMaterialCount = 3;
+    public CookingMaterial[] m_arrCookingMaterial = new CookingMaterial[c_MaxStdMaterialCount]; // 주제료 3개 
 
     public override void SetInspactor_InitTransList()
     {
@@ -12,34 +14,111 @@ public class Gui_HotDog : GuiBase
     
 	public void Awake()
 	{
-        m_CurrentState = E_HotDogSeq.S01_0_Material_preparation;
+        m_CurrentState = E_HotDogSeq.R000_010_00;
 
     }
+    void FixedUpdate()
+    {
+        StateUpdatePlay();
+    }
 
-    public void OnEnable()
+    void StateUpdatePlay()
 	{
-        Debug.Log("~~~~~~~~~~~~~~~~ _OnEnable !");
         switch(m_CurrentState)
         {
-            case E_HotDogSeq.S01_0_Material_preparation:
-                PlaySeq_S01_0();
+            case E_HotDogSeq.R000_010_00:// 재료 준비 0,1,2 재료 클릭 설정 상태 준비 
+                PlaySeq_R000_010_00();
+                break;
+            case E_HotDogSeq.R000_010_10:// 재료 준비 0,1,2 재료 클릭 설정 상태 시작
+                PlaySeq_R000_010_10();
+                test_EffectOff();
+                break;
+            case E_HotDogSeq.R000_010_11:// 재료 준비 0,1,2 재료 클릭 설정 상태 중 대기 
+
+                break;
+
+            case E_HotDogSeq.R000_010_20: // 재료 준비 0,1,2 재료 클릭 설정 상태 리셋 시작
+                PlaySeq_R000_010_20();
                 break;
         }
     }
     
     Gui_Refrigerator _Gui_Refrigerator;
-    // 처음 재료 선택 상태.
-    bool _isPlayedSeq_S01_0 = false; // _isPlayedSeq_S01_0 플레이 한것 체크;
-    public void PlaySeq_S01_0()
+    bool PlaySeq_PreCheck()
     {
-        if(_Gui_Refrigerator == null)
+        if (_Gui_Refrigerator == null)
         {
+            if (GuiManager.Instance == null || HelpManager.Instance == null)
+                return false;
+
             _Gui_Refrigerator = GuiManager.Instance.Find<Gui_Refrigerator>();
         }
 
-        _Gui_Refrigerator.GetItem(0).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
-        _Gui_Refrigerator.GetItem(1).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
-        _Gui_Refrigerator.GetItem(2).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        if (_Gui_Refrigerator == null)
+        {
+            return false;
+        }
+        return true;
+    }
+    // 재료 준비 0,1,2 재료 클릭 설정 상태 준비 
+    public void PlaySeq_R000_010_00()
+    {
+        if (PlaySeq_PreCheck() == false)
+        {
+            return;
+        }
+
+
+        //_Gui_Refrigerator.GetItem(0).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        //_Gui_Refrigerator.GetItem(1).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        //_Gui_Refrigerator.GetItem(2).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+
+        m_CurrentState = E_HotDogSeq.R000_010_10;// 재료 준비 0,1,2 재료 클릭 설정 상태 시작 
     }
 
+    // 재료 준비 0,1,2 재료 클릭 설정 상태 시작 
+    public void PlaySeq_R000_010_10()
+    {
+        if(PlaySeq_PreCheck() == false)
+        {
+            return;
+        }
+
+        //_Gui_Refrigerator.GetItem(0).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        //_Gui_Refrigerator.GetItem(1).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        //_Gui_Refrigerator.GetItem(2).DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+
+        m_CurrentState = E_HotDogSeq.R000_010_11;
+    }
+
+    public void PlaySeq_R000_010_20()
+    {
+        if (PlaySeq_PreCheck() == false)
+        {
+            return;
+        }
+
+        //_Gui_Refrigerator.GetItem(0).DORewind(); // DOKill(); //  DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        //_Gui_Refrigerator.GetItem(1).DORewind(); // .DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        //_Gui_Refrigerator.GetItem(2).DORewind(); //.DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+
+        m_CurrentState = E_HotDogSeq.R000_010_00;
+
+
+        test_EffectOn();
+    }
+
+    void test_EffectOn()
+    {
+        // on test
+        Gui_RecipeManager recipeMgr = GuiManager.Instance.Find<Gui_RecipeManager>();
+        recipeMgr.m_RecipeItemOnEffect[0].AddCheckIx(0);
+        recipeMgr.m_RecipeItemOnEffect[0].PlayOnRecipe(RecipeItemOnEffect.E_EffectType.ShowStar);
+    }
+    void test_EffectOff()
+    {
+        Gui_RecipeManager recipeMgr = GuiManager.Instance.Find<Gui_RecipeManager>();
+        recipeMgr.m_RecipeItemOnEffect[0].ClearCheck();
+        recipeMgr.m_RecipeItemOnEffect[0].PlayOffRecipe();
+    }
 }

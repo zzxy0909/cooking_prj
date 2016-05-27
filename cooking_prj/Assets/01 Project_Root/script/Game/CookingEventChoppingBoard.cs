@@ -2,7 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 
-public class CookingEventChoppingBoard  : CookingEventItemBase
+public class CookingEventChoppingBoard  : CookingItem
 {
     
 
