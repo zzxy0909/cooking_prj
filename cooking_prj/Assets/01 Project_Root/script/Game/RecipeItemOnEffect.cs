@@ -13,11 +13,12 @@ public class RecipeItemOnEffect : MonoBehaviour {
     public Transform m_ViewRoot;
     public Transform[] m_CheckItem;
     public List<int> m_lstCheckIx;
-    public ParticleSystem m_StarPartsEffect; 
+    public ParticleSystem m_StarPartsEffect;
+    public ParticleSystem m_coinEffect;
+    public Transform m_coinEffect_target;
 
-    
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         ClearCheck();
 
     }
@@ -92,6 +93,7 @@ public class RecipeItemOnEffect : MonoBehaviour {
         StartCoroutine(_SeqPlayRecipeEffect( etype, effectPos));
         
     }
+    public float m_coin_upEffect_time = 1.5f;
     IEnumerator _SeqPlayRecipeEffect(E_EffectType etype, Transform effectPos = null)
     {
         float punch_time = 0.5f;
@@ -108,9 +110,21 @@ public class RecipeItemOnEffect : MonoBehaviour {
                 {
                     tmpVec = effectPos.position;
                 }
-                m_StarPartsEffect.transform.position = new Vector3(tmpVec.x, tmpVec.y, m_StarPartsEffect.transform.position.z);
+                m_coinEffect.transform.position = m_StarPartsEffect.transform.position = new Vector3(tmpVec.x, tmpVec.y, m_StarPartsEffect.transform.position.z);
                 m_StarPartsEffect.Stop();
                 m_StarPartsEffect.Play();
+
+                m_coinEffect.gameObject.SetActive(true);
+                m_coinEffect.Play();
+
+                m_coinEffect.transform.DOMove(m_coinEffect_target.position,  m_coin_upEffect_time); // m_Delay_time + punch_time > 도착후 대기 시간.
+
+                CookManager.Instance.DelayAction(m_coin_upEffect_time + m_Delay_time + punch_time,
+                    () =>
+                    {
+                        m_coinEffect.gameObject.SetActive(false);
+                    });
+
                 yield return new WaitForSeconds(m_Delay_time);
             }
             
@@ -120,12 +134,12 @@ public class RecipeItemOnEffect : MonoBehaviour {
         m_ViewRoot.gameObject.SetActive(true);
         m_ViewRoot.DOScale(m_fShowElastic, punch_time).SetEase(m_ShowEaseType); 
         yield return new WaitForSeconds(punch_time);
-
+        
         if(m_lstCheckIx.Count > 0)
         {
             for (int i = 0; i < m_lstCheckIx.Count; i++)
             {
-                if (m_CheckItem[m_lstCheckIx[i]].gameObject.activeSelf == false)
+                // if (m_CheckItem[m_lstCheckIx[i]].gameObject.activeSelf == false)
                 {
                     m_CheckItem[m_lstCheckIx[i]].gameObject.SetActive(true);
                     m_CheckItem[m_lstCheckIx[i]].DORewind();
@@ -136,6 +150,13 @@ public class RecipeItemOnEffect : MonoBehaviour {
             m_CheckItem[m_lstCheckIx[m_lstCheckIx.Count - 1]].DORewind();
             m_CheckItem[m_lstCheckIx[m_lstCheckIx.Count - 1]].DOScale(1.2f, 1f).SetEase(Ease.InElastic).SetLoops(-1, LoopType.Yoyo);
         }
+
+        // 그로벌 비헤이비어에 마낀다.
+        //if (m_coinEffect.gameObject.activeSelf == true)
+        //{
+        //    yield return new WaitForSeconds(m_coin_upEffect_time);
+        //    m_coinEffect.gameObject.SetActive( false);
+        //}
 
         if (etype == E_EffectType.ShowStar)
         {

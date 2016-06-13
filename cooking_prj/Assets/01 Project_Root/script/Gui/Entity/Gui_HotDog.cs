@@ -31,7 +31,6 @@ public class Gui_HotDog : GuiBase
                 break;
             case E_HotDogSeq.R000_010_10:// 재료 준비 0,1,2 재료 클릭 설정 상태 시작
                 PlaySeq_R000_010_10();
-                test_EffectOff();
                 break;
             case E_HotDogSeq.R000_010_11:// 재료 준비 0,1,2 재료 클릭 설정 상태 중 대기 
 
@@ -104,21 +103,6 @@ public class Gui_HotDog : GuiBase
 
         m_CurrentState = E_HotDogSeq.R000_010_00;
 
-
-        test_EffectOn();
     }
-
-    void test_EffectOn()
-    {
-        // on test
-        Gui_RecipeManager recipeMgr = GuiManager.Instance.Find<Gui_RecipeManager>();
-        recipeMgr.m_RecipeItemOnEffect[0].AddCheckIx(0);
-        recipeMgr.m_RecipeItemOnEffect[0].PlayOnRecipe(RecipeItemOnEffect.E_EffectType.ShowStar);
-    }
-    void test_EffectOff()
-    {
-        Gui_RecipeManager recipeMgr = GuiManager.Instance.Find<Gui_RecipeManager>();
-        recipeMgr.m_RecipeItemOnEffect[0].ClearCheck();
-        recipeMgr.m_RecipeItemOnEffect[0].PlayOffRecipe();
-    }
+    
 }

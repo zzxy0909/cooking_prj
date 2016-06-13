@@ -16,12 +16,7 @@ public class OrderItem : MonoBehaviour {
 
     public void OrderItemClick()
     {
-        Gui_RecipeManager recipeMgr = GuiManager.Instance.Find<Gui_RecipeManager>();
-        recipeMgr.HideRecipeAll();
-        recipeMgr.m_RecipeItemOnEffect[(int)m_eRecipe].PlayOnRecipe(RecipeItemOnEffect.E_EffectType.None);
-
-        Gui_Refrigerator refrigerator = GuiManager.Instance.Find<Gui_Refrigerator>();
-        refrigerator.ShowRecipe(m_eRecipe);
-
+        CookManager.Instance.ChangeCurrentRecipe(m_eRecipe);
+        
     }
 }

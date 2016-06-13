@@ -20,15 +20,9 @@ public enum E_CookMaterial
 
 }
 
-public enum E_Worktops_HotDog
+public enum E_Worktops_Item
 {
-    ChoppingBoard = 0, // 도마
-    Dish = 1, // 접시
-}
-public enum E_Worktops_Hamburger
-{
-    ChoppingBoard = 0, // 도마
-    Dish = 1, // 접시
+    
 }
 
 public enum E_HotDogSeq
@@ -38,11 +32,12 @@ public enum E_HotDogSeq
     R000_010_10, // 주 재료 준비 0,1,2 재료 클릭 설정 상태 시작 
     R000_010_11, // 주 재료 준비 0,1,2 재료 클릭 설정 상태 중 대기 
     R000_010_20, // 주 재료 준비 0,1,2 재료 클릭 설정 상태 리셋 시작
+    R000_020_10, // 첫페이지 시작. 0개 이상 완료. 조리대에 재료 놓여짐.
     R000_020, // 양배추 도마로 보내기
     R000_030, // 빵 오븐으로
     R000_040, // 소시지 프라이팬으로     
 }
-public enum E_HumburgerSeq
+public enum E_HamburgerSeq
 {
     // R000 레시피 인댁스 _ 010 시퀀스 번호 _ 세부 설정 상태 번호
     R000_010_00, // 주 재료 준비 - 0,1,2 재료 클릭 설정 상태 준비
@@ -56,9 +51,10 @@ public enum E_HumburgerSeq
 
 public enum E_CookingItemGroupType
 {
-    CookingMatrial, // 제료.
+    CookingMatrial, // 재료.
     CookingTool, // 도구 ( 칼, 집개 등)
     CookingEquip, // 장비 (가스렌지, 도마, 오븐 등)
+    Processed, // 조리후 재료.
 }
 
 public enum E_CookingItemType
@@ -66,5 +62,26 @@ public enum E_CookingItemType
     vegetable, // 야채
     bread, // 빵
     sausage, // 소시지
+    // ---------- Worktops_Item
+    ChoppingBoard1, // 도마
+    ChoppingBoard2, // 도마
+    ChoppingBoard3, // 도마
+    Dish1, // 접시
+    Dish2, // 접시
+    Dish3, // 접시
+    Dish4, // 접시
+    Pan1, // 팬
+    Pan2,
+    Pan3,
+    Pan4,
+    Oven1, // 오븐
+    Oven2,
+    //--------------------
+    knife1,
+    knife2,
+    knife3,
+    spatula1,
+    spatula2,
+    spatula3,
 
 }

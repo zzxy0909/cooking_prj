@@ -100,6 +100,12 @@
     <Reference Include="SampleClassLibrary">
       <HintPath>Assets\JsonDotNet\Examples\Tests\TestModels\SampleClassLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="tk2dSkin">
+      <HintPath>Assets\TK2DROOT\tk2d\Editor\tk2dSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="tk2dExternal">
+      <HintPath>Assets\TK2DROOT\tk2d\Editor\tk2dExternal.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-UnityScript">
       <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
     </Reference>
@@ -208,6 +214,28 @@
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Editor\EditorUtility.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Goodies\TexturePacker\Exporter\2dtoolkit\exporter.xml" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\AdditiveVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\Blend2TexVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\CutoutVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\LitBlendVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\LitCutoutVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\LitPremulVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\LitSolidVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\PremulVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\SolidVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\goodies\PackedTextMesh.shader" />
+    <None Include="Assets\TK2DROOT\tk2d\Shaders\resources\BlendVertexColor.shader" />
+    <None Include="Assets\TK2DROOT\tk2dUI\Shaders\DepthMask.shader" />
+    <None Include="Assets\TK2DROOT\tk2dUI\Shaders\DepthMaskSolid.shader" />
+    <None Include="Assets\TK2DROOT\tk2dUI_demo\Assets\Dark\Fonts\Nunito16.fnt" />
+    <None Include="Assets\TK2DROOT\tk2dUI_demo\Assets\Dark\Fonts\Nunito24.fnt" />
+    <None Include="Assets\TK2DROOT\tk2dUI_demo\Assets\Dark\Fonts\Nunito32.fnt" />
+    <None Include="Assets\TK2DROOT\tk2dUI_demo\Assets\Font\OldSansBlack\OldSansBlack.fnt" />
+    <None Include="Assets\TK2DROOT\tk2d_demo\Credits.txt" />
+    <None Include="Assets\TK2DROOT\tk2d_demo\demobmfont\test.fnt" />
+    <None Include="Assets\TK2DROOT\tk2d_demo\democameradata\source\democamerafont.fnt" />
     <None Include="Assets\ToonEffect_V2\Documentation\01 - Package description.txt" />
     <None Include="Assets\ToonEffect_V2\Documentation\02 - How to create an effect.txt" />
     <None Include="Assets\ToonEffect_V2\Documentation\03 - HTSpriteSheet.cs parameters.txt" />
@@ -219,6 +247,7 @@
     <None Include="Assets\spine-unity\Examples\Spine\FootSoldier\Equipment\Equipment.atlas.txt" />
     <None Include="Assets\spine-unity\Examples\Spine\FootSoldier\FS_White.atlas.txt" />
     <None Include="Assets\spine-unity\Examples\Spine\FootSoldier\license.txt" />
+    <None Include="Assets\spine-unity\Examples\Spine\FootSoldier\testEquip\Equipment.atlas.txt" />
     <None Include="Assets\spine-unity\Examples\Spine\Gauge\Gauge.atlas.txt" />
     <None Include="Assets\spine-unity\Examples\Spine\Goblins\goblins-mesh.atlas.txt" />
     <None Include="Assets\spine-unity\Examples\Spine\Hero\hero-mesh.atlas.txt" />
